@@ -1,5 +1,6 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
+  Collapse,
   IconButton,
   Navbar as MTNavbar,
   Typography,
@@ -7,79 +8,106 @@ import {
 import Image from "next/image";
 import React from "react";
 
-interface NavItemProps {
-  children: React.ReactNode;
-  href?: string;
-}
-
-function NavItem({ children, href }: NavItemProps) {
+function NavList() {
   return (
-    <li>
+    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
-        as="a"
-        href={href || "#"}
-        target={href ? "_blank" : "_self"}
-        variant="paragraph"
-        color="gray"
-        className="flex items-center gap-2 font-medium text-gray-900"
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
         placeholder={undefined}
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
       >
-        {children}
+        <a
+          href="#skills"
+          className="flex items-center hover:text-teal-500 transition-colors"
+        >
+          Skill
+        </a>
       </Typography>
-    </li>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+        placeholder={undefined}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      >
+        <a
+          href="#portfolio"
+          className="flex items-center hover:text-teal-500 transition-colors"
+        >
+          Portfolio
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+        placeholder={undefined}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      >
+        <a
+          href="#contact"
+          className="flex items-center hover:text-teal-500 transition-colors"
+        >
+          Contact
+        </a>
+      </Typography>
+    </ul>
   );
 }
 
 export function Navbar() {
-  const [open, setOpen] = React.useState(false);
+  const [openNav, setOpenNav] = React.useState(false);
 
-  const handleOpen = () => setOpen((cur) => !cur);
+  const handleWindowResize = () =>
+    window.innerWidth >= 960 && setOpenNav(false);
 
   React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpen(false)
-    );
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
 
   return (
     <MTNavbar
-      shadow={false}
-      fullWidth
-      className="border-0 sticky top-0 z-50"
+      className="mx-auto w-full px-6 py-3"
       placeholder={undefined}
       onPointerEnterCapture={undefined}
       onPointerLeaveCapture={undefined}
     >
-      <div className="container mx-auto flex items-center justify-between">
-        <Image src="/logo-dw.png" alt="/logo-dw.png" width={100} height={100} />
-        {/* <Typography
-          color="blue-gray"
-          className="text-lg font-bold"
-          placeholder={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          Dharma Wiguna
-        </Typography> */}
+      <div className="flex items-center justify-between text-blue-gray-900">
+        <Image src="/dhrm-logo.png" alt="/logo-dw.png" width={70} height={70} />
+        <div className="hidden lg:block">
+          <NavList />
+        </div>
         <IconButton
-          variant="text"
-          color="gray"
-          onClick={handleOpen}
-          className="ml-auto inline-block lg:hidden"
           placeholder={undefined}
           onPointerEnterCapture={undefined}
           onPointerLeaveCapture={undefined}
+          variant="text"
+          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          ripple={false}
+          onClick={() => setOpenNav(!openNav)}
         >
-          {open ? (
-            <XMarkIcon strokeWidth={2} className="h-6 w-6" />
+          {openNav ? (
+            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
           ) : (
-            <Bars3Icon strokeWidth={2} className="h-6 w-6" />
+            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
           )}
         </IconButton>
       </div>
+      <Collapse open={openNav}>
+        <NavList />
+      </Collapse>
     </MTNavbar>
   );
 }

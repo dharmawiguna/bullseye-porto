@@ -11,8 +11,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "BULLSEYE Porto - Dharma Wiguna",
-  description: "BULLSEYE PORTO - task 2 for technical test",
+  title: "Dharma Wiguna - Portfolio",
+  description: "Dharma Wiguna - Portfolio",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
           data-site="YOUR_DOMAIN_HERE"
           src="https://api.nepcha.com/js/nepcha-analytics.js"
         ></script>
-        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/dhrm-logo.png" type="image/png" />
       </head>
       <body className={roboto.className}>
         <Layout>{children}</Layout>

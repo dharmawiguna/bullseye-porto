@@ -2,22 +2,28 @@
 import { Footer, Navbar } from "@/components";
 
 // sections
+import HorizontalRow from "@/components/horizontal-row";
 import ContactForm from "./contact-form";
 import Hero from "./hero";
 import Projects from "./projects";
 import Skills from "./skills";
-import HorizontalRow from "@/components/horizontal-row";
 
 export default function Portfolio() {
   return (
     <>
       <Navbar />
       <Hero />
-      <Skills />
+      <section id="skills">
+        <Skills />
+      </section>
       <HorizontalRow />
-      <Projects />
+      <section id="portfolio">
+        <Projects />
+      </section>
       <HorizontalRow />
-      <ContactForm />
+      <section id="contact">
+        <ContactForm />
+      </section>
       <Footer />
     </>
   );

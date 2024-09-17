@@ -14,12 +14,13 @@ import {
   Textarea,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import Link from "next/link";
 
 export function ContactForm() {
   return (
-    <section className="px-8 py-5">
-      <div className="container mx-auto mb-20 text-center">
+    <section className="px-8 py-0">
+      <div className="container mx-auto mb-10 text-center">
         <Typography
           variant="h1"
           color="blue-gray"
@@ -40,6 +41,51 @@ export function ContactForm() {
           Feel free to reach out through the contact form, and let&apos;s embark
           on a journey of innovation and success.
         </Typography>
+      </div>
+      <div className="container mx-auto mb-10 text-center">
+        <div className="photo-wrapper p-1">
+          <Image
+            width={150}
+            height={150}
+            className="w-32 h-32 rounded-full mx-auto"
+            src="/image/porto/mask.jpeg"
+            alt="Dharma Wiguna"
+          />
+        </div>
+        <div className="py-2">
+          <Typography
+            color="blue-gray"
+            className="font-bold uppercase"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            my skills
+          </Typography>
+          <div className="text-center text-gray-400 text-md">
+            <p>Software Engineer</p>
+          </div>
+          <div className="mt-2">
+            {/* resume-Dharma-Wiguna */}
+
+            <Link
+              href="/docs/resume-Dharma-Wiguna.pdf"
+              locale={false}
+              target="_blank"
+            >
+              <button className="bg-gray-100 hover:bg-gray-400 text-teal-400 hover:text-light-blue-50 font-semibold py-1 px-4 rounded inline-flex items-center text-sm w-[15%] justify-center">
+                <svg
+                  className="fill-current w-4 h-4 mr-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                </svg>
+                <span>Resume</span>
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
       <div>
         <Card
